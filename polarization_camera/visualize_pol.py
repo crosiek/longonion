@@ -54,7 +54,8 @@ angle_img = mpl.cm.hsv(psi/np.pi)[:,:,0:3]*255
 p = (0.8/p.max()) * p[:,:,None] # normalize and reshape
 # Linear interpolation between pol. angle and grayscale intensity
 interp_img = (p**2*angle_img + (1-p)*(gray_img))
-plt.imshow(interp_img.astype(np.uint8))
+plt.imshow(interp_img.astype(np.uint8), cmap='hsv', vmin=0, vmax=np.pi)
+plt.colorbar()
 plt.ion()
 plt.show()
 
