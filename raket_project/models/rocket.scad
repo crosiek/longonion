@@ -1,10 +1,10 @@
 $fn = 150;
 
 /* Øverste del af raket */
-translate([100, 0, 0]) union() {
+translate([40, 0, 0]) union() {
     cylinder(h=15, r=10); /* Lille monterings studs */
-    translate([0, 0, 15]) cylinder(h=30, r=12); /* Stor krop */
-    translate([0, 0, 30 + 15]) cylinder(h=40, r1=12, r2=0); /* Kegle */
+    translate([0, 0, 15]) cylinder(h=10, r=12); /* Stor krop */
+    translate([0, 0, 10 + 15]) cylinder(h=40, r1=12, r2=0); /* Kegle */
 }
 
 difference() {
@@ -28,15 +28,15 @@ difference() {
     }
     
     /* Remove some material to allow the insertion of the cap */
-    translate([0, 0, 100-15]) cylinder(h= 16, r=10.5);
+    translate([0, 0, 100-15]) cylinder(h= 16, r=10);
     
     /* Remove extra material so we can insert the catridge */
-    translate([0, 0, 81]) cylinder(h=25, r=8);
+    translate([0, 0, 80]) cylinder(h=25, d=20);
     
     /* CO2 Catridge */
-    translate([0, 0, 82]) rotate([180, 0, 0]) union() {
-        cylinder(h = 63, r=8);
-        translate([0, 0, 63]) cylinder(h = 16, d1=16, d2=7.3);
-        translate([0, 0, 63+16]) cylinder(h=7, d=7.3);
+    translate([0, 0, 83]) rotate([180, 0, 0]) union() {
+        cylinder(h = 63, d=20);
+        translate([0, 0, 63]) cylinder(h = 16, d1=19, d2=8.5);
+        translate([0, 0, 63+16]) cylinder(h=7, d=8.5);
     }
 }
