@@ -22,13 +22,14 @@ for i in range(4):
     imgs[-1] = scipy.ndimage.gaussian_filter(imgs[-1], 1)
 
     # Crop image
-    # imgs[-1] = imgs[-1][200:450,300:600]
+    # imgs[-1] = imgs[-1][200:450, 300:600]
 
     # Load using imageio instead
     # imgs.append(np.array(imageio.Image.open(f'images/img-2-{i+1}.jpg')).astype(float))
 
     # TODO: Manually convert the color channels to grayscale
     # rgb_weights = np.array([0.3, 0p.6, 0.1])
+
 
 avg_img = np.mean(np.array(imgs), axis=0)
 
@@ -50,15 +51,11 @@ psi = np.arctan2(S1, S2)/2
 # Overlay angle
 plt.figure()
 gray_img = np.dstack((avg_img,)*3)
-angle_img = mpl.cm.hsv(psi/np.pi)[:,:,0:3]*255
-p = (0.8/p.max()) * p[:,:,None] # normalize and reshape
+angle_img = mpl.cm.hsv(psi/np.pi)[:, :, 0:3]*255
+p = (0.8/p.max()) * p[:, :, None]  # normalize and reshape
 # Linear interpolation between pol. angle and grayscale intensity
 interp_img = (p**2*angle_img + (1-p)*(gray_img))
 plt.imshow(interp_img.astype(np.uint8), cmap='hsv', vmin=0, vmax=np.pi)
 plt.colorbar()
 plt.ion()
 plt.show()
-
-# Local variables:
-# compile-command: "python -i visualize_pol.py"
-# End:
