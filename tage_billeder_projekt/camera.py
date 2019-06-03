@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import datetime
 import sys
 import cv2
 import argparse
@@ -9,6 +10,8 @@ class Camera:
     def __init__(self, device_idx=0):
         "Wraps video capture device with index device_idx."
         self.vc = cv2.VideoCapture(device_idx)
+        self.vc.set(3, 1920)
+        self.vc.set(4, 1080)
         self.is_closed = False
 
     def get_frame(self):
@@ -34,7 +37,7 @@ def main(argv):
                         help='Device index', default=0)
     parser.add_argument('--paused', action='store_true',
                         help='Capture a single frame and freeze')
-    parser.add_argument('--snapshot-prefix', metavar='prefix', type=str, nargs='?',
+    parser.add_argument('--screenshot-prefix', metavar='prefix', type=str, nargs='?',
                         help='Screenshot prefix', default='opencv-')
     args = parser.parse_args()
 
